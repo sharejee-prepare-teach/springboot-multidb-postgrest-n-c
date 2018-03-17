@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    password: 1
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: postgres
+  jpa:
+      generate-ddl: true
+      hibernate:
+        ddl-auto: create-drop
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      show-sql: true
+
+
+---
+spring:
+  datasource:
+    password: 1
+    url: jdbc:postgresql://localhost:5432/testdb2
+    username: postgres
+  jpa:
+      generate-ddl: true
+      hibernate:
+        ddl-auto: create-drop
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      show-sql: true
+
+

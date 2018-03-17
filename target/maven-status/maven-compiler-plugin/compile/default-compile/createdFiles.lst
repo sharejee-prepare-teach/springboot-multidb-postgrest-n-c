@@ -1,0 +1,8 @@
+com\foobar\BarDbConfig.class
+com\foobar\Application.class
+com\foobar\foo\domain\Foo.class
+com\foobar\bar\domain\Bar.class
+com\foobar\bar\repo\BarRepository.class
+com\foobar\FooBarController.class
+com\foobar\foo\repo\FooRepository.class
+com\foobar\FooDbConfigh.class
