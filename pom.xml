@@ -6,7 +6,7 @@
 	<groupId>com.foobar</groupId>
 	<artifactId>spring-boot-multiple-datasources</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>spring-boot-multiple-datasources</name>
 	<description>Demo project for Spring Boot</description>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
@@ -26,103 +26,56 @@
 
 	<!-- Spring Boot Starters -->
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		<!--used for starter web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- PostgreSQL JDBC driver -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- TEST DEPENDENCIES -->
-		<!-- Spring Boot Starter Test -->
+		<!--used for starter test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Spock (A Groovy based testframework running on top of the JUnit runner)  -->
-		<!-- https://mvnrepository.com/artifact/org.spockframework/spock-core -->
+		<!--for integrate tomcate to run application-->
 		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-core</artifactId>
-			<version>1.1-groovy-2.4</version>
-			<scope>test</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<!--for know jstl in JSP page-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!--used for pool connection-->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
 		</dependency>
 
-		<!-- Spock-Spring: Use the Spring TestContext framework together with Spock for Integration Tests -->
-		<!-- https://mvnrepository.com/artifact/org.spockframework/spock-spring -->
 		<dependency>
-			<groupId>org.spockframework</groupId>
-			<artifactId>spock-spring</artifactId>
-			<version>1.1-groovy-2.4</version>
-			<scope>test</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<!-- Specific Groovy version for using Spock (needed by the Maven Plugins) -->
-		<!-- Use a specific Groovy version rather than the one specified by spock-core -->
 		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy-all</artifactId>
-			<version>2.4.10</version> <!-- 2.4.11 didn't work for me -->
-			<scope>test</scope>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901-1.jdbc4</version>
 		</dependency>
 
-		<!-- H2 In-Memory Database JDBC driver for tests -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.195</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<!-- Spock related Plugins -->
-			<!-- Mandatory plugins for using Spock -->
-			<plugin>
-				<!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
-				visit https://github.com/groovy/GMavenPlus/wiki -->
-				<groupId>org.codehaus.gmavenplus</groupId>
-				<artifactId>gmavenplus-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Optional plugins for using Spock -->
-			<!-- Only required if names of spec classes don't match default Surefire patterns (`*Test` etc.) -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.20</version>
-				<configuration>
-					<useFile>false</useFile>
-					<includes>
-						<include>**/*Spec.java</include>
-					</includes>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

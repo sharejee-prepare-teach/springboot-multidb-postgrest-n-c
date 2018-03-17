@@ -13,9 +13,7 @@ import javax.persistence.Table;
 public class Bar {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="bar_id_seq")
-  @SequenceGenerator(name="bar_id_seq", sequenceName="bar_id_seq", allocationSize=1)
-  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(name = "BAR")

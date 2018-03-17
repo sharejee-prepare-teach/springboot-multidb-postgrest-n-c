@@ -1,21 +1,13 @@
 package com.foobar.foo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "foo")
 public class Foo {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="foo_id_seq")
-  @SequenceGenerator(name="foo_id_seq", sequenceName="foo_id_seq", allocationSize=1)
-  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(name = "FOO")
