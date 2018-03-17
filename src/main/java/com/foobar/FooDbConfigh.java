@@ -26,14 +26,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
         transactionManagerRef = "barTransactionManager", basePackages = {"com.foobar.foo.repo"})
 public class FooDbConfigh {
     @Bean(name = "fooDataSource")
-    @Primary
+    //@Primary
     @ConfigurationProperties(prefix = "foo.datasource")
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean(name = "fooEntityManagerFactory")
-    @Primary
+    //@Primary
     public LocalContainerEntityManagerFactoryBean fooEntityManagerFactory(
             EntityManagerFactoryBuilder builder, @Qualifier("fooDataSource") DataSource dataSource) {
         return builder.dataSource(dataSource).packages("com.foobar.foo.domain").persistenceUnit("foo")
@@ -41,7 +41,7 @@ public class FooDbConfigh {
     }
 
     @Bean(name = "fooEntityManagerFactory")
-    @Primary
+    //@Primary
     public PlatformTransactionManager fooTransactionManager(
             @Qualifier("fooEntityManagerFactory") EntityManagerFactory barEntityManagerFactory) {
         return new JpaTransactionManager(barEntityManagerFactory);

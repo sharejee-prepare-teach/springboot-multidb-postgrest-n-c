@@ -23,14 +23,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class BarDbConfig {
 
   @Bean(name = "barDataSource")
-  //@Primary
+  @Primary
   @ConfigurationProperties(prefix = "bar.datasource")
   public DataSource primaryDataSource() {
     return DataSourceBuilder.create().build();
   }
 
   @Bean(name = "barEntityManagerFactory")
-  //@Primary
+  @Primary
   public LocalContainerEntityManagerFactoryBean barEntityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("barDataSource") DataSource dataSource) {
     return builder.dataSource(dataSource).packages("com.foobar.bar.domain").persistenceUnit("bar")
@@ -38,7 +38,7 @@ public class BarDbConfig {
   }
 
   @Bean(name = "barTransactionManager")
-  //@Primary
+  @Primary
   public PlatformTransactionManager barTransactionManager(
       @Qualifier("barEntityManagerFactory") EntityManagerFactory barEntityManagerFactory) {
     return new JpaTransactionManager(barEntityManagerFactory);
